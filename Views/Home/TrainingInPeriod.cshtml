@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Cascadingdropdownlist.ViewModels.TrainingInPeriod>
+                      @{
+                          ViewBag.Title = "People List";
+                      }
+                
+                      <h4>Students Trained in Period</h4>
+                      @using (Html.BeginForm("TrainingInPeriod", "Home", FormMethod.Get))
+                      {
+                          <div>
+                              <text>From Date yyyy-mm-dd : </text><input type="text" name="q" />&nbsp;
+                              <text>To Date yyyy-mm-dd : </text><input type="text" name="q2" />&nbsp;
+
+                              <input type="submit" value="Search" id="btnSubmit" />
+                          </div>
+                      }
+
+
+                            
+                      <div id="DivGrid" >
+                          @{
+                              var grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 15, defaultSort: "Course_DateID");
+                              @grid.GetHtml(tableStyle: "gridTable",
+    headerStyle: "gridHead",
+    footerStyle: "gridFooter",
+    rowStyle: "gridRow",
+    alternatingRowStyle: "gridAltRow",  htmlAttributes: new { id = "DataTable" }, columns: grid.Columns(
+        grid.Column("Course_Title"),
+        grid.Column("Organisation"),
+        grid.Column("SessionCount", header:"Students Trained")
+        ));
+                          }
+
+                      </div>

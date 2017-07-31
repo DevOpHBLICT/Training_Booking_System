@@ -1,0 +1,134 @@
+﻿*
+{
+     font-size:14px!important;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-size:12px!important;
+}
+
+
+
+
+table tr:nth-child(even) {
+     background-color: #eee;
+}
+ table tr:nth-child(odd) {
+     background-color: #fff;
+}
+
+
+ 
+ 
+
+ 
+@media print{
+        header .hide{visibility: hidden}
+        }
+
+
+ 
+
+ .button {
+    position:absolute;
+    bottom:10px;
+    right:10px;
+    width:100px;
+    height:30px;
+}
+img-wrapper {
+  position: relative;
+ }
+
+.img-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.img-overlay:before {
+  content: ' ';
+  display: block;
+  /* adjust 'height' to position overlay content vertically */
+  height: 50%;
+}
+
+legend,h1,h2,h4,h3,h5{
+  color:  #007AC2
+}
+
+.form-horizontal .checkbox-inline {
+   color:#007AC2;
+
+}
+
+
+
+th{
+    
+    color: white;
+    border-right:1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+    border-top: 1px solid #C1DAD7;
+    letter-spacing:2px;
+    text-align : left;
+    padding: 6px 6px 6px 12px;
+    background: #007AC2 no-repeat  
+}
+
+td {
+    border-right : 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+    background: #fff;
+    padding: 6px 6px 6px 12px;
+    color: #6D929B;
+}
+
+
+
+
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.navbar-inverse
+{
+    background-color:#005EB8;
+}
+.navbar-inverse .navbar-nav > li > a
+{
+    color:white;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus
+{
+
+color:#00A9CE ;
+}
+
+
+.navbar-inverse{
+    margin-bottom:10px;
+}

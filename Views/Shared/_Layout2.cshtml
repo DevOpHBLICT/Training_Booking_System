@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HBL Training</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Bootstrap/js/jquery.js"></script>
+    <script src="../../Scripts/jquery-3.2.0.js"></script>
+     <!-- Custom CSS -->
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap-responsive.css">
+    <link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap-responsive.min.css">
+  
+    <link href="../../Content/Site.css" rel="stylesheet" />
+   
+
+</head>
+<body {  } >
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+               
+              
+                <a href="/" style="position:absolute;margin-left:2px;margin-top:2px">
+                    <img src="../../Images/HBLICT.png" />
+
+                </a>
+                
+            </div>
+                 <div class="menu-wrap">
+                    <nav class="menu">
+                        <ul class="clearfix">
+                            <li><a href="/">Home</a></li>
+                            <li>
+                                <a href="#">Reports <span class="arrow">&#9660;</span></a>
+
+                                <ul class="sub-menu">
+                                    <li>@Html.ActionLink("Courses (Live)", "Live", "Home")</li>
+                                    <li><a href="#">@Html.ActionLink("Courses (Live/Historical)", "About", "Home"
+                                )</a></li>
+                                    <li><a href="#"> @Html.ActionLink("Reports By Customer", "ReportsByCustomer", "Home")</li>
+                                    <li><a href="#">Showtimes &amp; Tickets</a></li>
+                                </ul>
+                            </li>
+                          
+                            <li>
+                                <a href="#">Admin<span class="arrow">&#9660;</span></a>
+
+                                <ul class="sub-menu">
+                                    <li>@Html.ActionLink("Course Titles", "Index", "Course")</li>
+                                    <li>@Html.ActionLink("Course Dates (All)", "Index", "Course_Dates")</li>
+                                    <li>@Html.ActionLink("Course Dates (Live)", "Live", "Course_Dates")</li>
+
+                                    <li>@Html.ActionLink("Trainers (all Courses)", "Index", "Instructor")</li>
+                                    <li>@Html.ActionLink("Trainers (Future Courses)", "Future", "Instructor")</li>
+
+                                    <li>@Html.ActionLink("Venues", "Index", "Department")</li>
+                                    <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
+                            </ul>
+                        </li>
+
+                        </ul>
+
+
+                    </nav>
+                </div>
+
+</div>
+
+                   </div>
+                  
+
+            
+    <div class="container body-content">
+        <br/>
+        <br />
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2017 HBL</p>
+        </footer>
+    </div>
+
+
+
+
+    @RenderSection("scripts", required: false)
+
+    
+  
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="../../bootstrap/js/dropdown.js"></script>
+   
+   
+
+    </body>
+       

@@ -1,0 +1,260 @@
+﻿
+@model Cascadingdropdownlist.Models.Student
+
+@{
+    ViewBag.Title = "Enter Student Details";
+}
+ <!-- Le styles -->
+ 
+<script type="text/javascript">
+    
+  
+
+    $(document).ready(function () {
+        //Dropdownlist Selectedchange event
+        $("#Courses").change(function () {
+            $("#Venues").empty();
+            $("#Dates").empty();
+
+        
+
+
+
+
+
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetVenues")', // we are calling json method
+                dataType: 'json',
+                 data: { id: $("#Courses").val() },
+                success: function (departments) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(departments, function (i, department) {
+                        $("#Venues").append('<option value="' + department.Value + '">' + department.Text + '</option>');
+                    }); // here we are adding option for States
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve departments.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+    function isDate(val) {
+        var d = new Date(val);
+        return !isNaN(d.valueOf());
+    }
+    Date.prototype.withoutTime = function () {
+        var d = new Date(this);
+        d.setHours(0, 0, 0, 0);
+        return d;
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Dropdownlist Selectedchange event
+        $("#Venues").change(function () {
+            $("#Dates").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetDates")',
+                 dataType: 'json',
+                data: { id: $("#Venues").val() ,id2 : $("#Courses").val()},
+                success: function (dates) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                 
+                     
+                    $.each(dates, function (i, d) {
+                      
+
+                        if (!window.chrome) {
+                            var o = new Date(d.Text);
+
+
+                            if (!isNaN(o)) { // true
+
+                                $("#Dates").append('<option value="' + d.Value + '">'
+  + o.toLocaleDateString() + '</option>');
+                            } else {
+                                $("#Dates").append('<option value="' + 0 + '">'
++ '-Select-' + '</option>');
+                            }
+                        }else
+                        {
+                          
+                            $("#Dates").append('<option value="' + d.Value + '">'
+ + d.Text.substring(0, d.Text.length - 7) + '</option>');
+                        }
+                     
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve Dates.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+
+
+
+
+ 
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+
+     
+   
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+   <div class="jumbotron">
+   
+   <fieldset>
+    <legend>Book Course</legend>
+            <div class="container-fluid">
+                
+          <div class="row-fluid">
+             
+      <div  class="col-xs-3 form-group">
+
+                 @Html.LabelFor(model => model.Job_Title, htmlAttributes: new { @class = "" })
+      
+                @Html.TextBoxFor(model => model.Job_Title, new { @class = "form-control"} )
+                @Html.ValidationMessageFor(model => model.Job_Title, "", new { @class = "text-danger" })
+
+      </div>
+<div  class="col-xs-4 form-group">
+              @Html.LabelFor(model => model.FirstMidName, htmlAttributes: new { @class = "" })
+              @Html.TextBoxFor(model => model.FirstMidName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FirstMidName, "", new { @class = "text-danger" })
+   </div>
+  <div  class="col-xs-4 form-group">                         
+                 @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "" })
+                  @Html.TextBoxFor(model => model.LastName,  new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+          </div>
+        </div>
+
+    <div class='row-fluid'>
+        <div class='col-xs-3 form-group'>
+       
+              @Html.LabelFor(model => model.Email_Address, htmlAttributes: new { @class = "" })
+              @Html.TextBoxFor(model => model.Email_Address,new { @class = "form-control"  })
+              @Html.ValidationMessageFor(model => model.Email_Address, "", new { @class = "text-danger" })
+           </div>
+           <div class='col-xs-4 form-group'>
+       
+              @Html.LabelFor(model => model.Contact_Tel_No, htmlAttributes: new { @class = "" })
+              @Html.TextBoxFor(model => model.Contact_Tel_No,new { @class = "form-control"  })
+              @Html.ValidationMessageFor(model => model.Contact_Tel_No, "", new { @class = "text-danger" })
+           </div>
+      
+       <div class='col-xs-4 form-group'>
+   
+              @Html.LabelFor(model => model.Mobile_No, htmlAttributes: new { @class = "" })
+              @Html.TextBoxFor(model => model.Mobile_No,new { @class = "form-control"  })
+              @Html.ValidationMessageFor(model => model.Mobile_No, "", new { @class = "text-danger" })
+      
+        </div>
+    </div>
+     
+                <div class="row-fluid">
+        <div class='col-xs-4 form-group'>
+          
+              @Html.LabelFor(model => model.Work_Base_Address, htmlAttributes: new { @class = "" })
+              @Html.TextBoxFor(model => model.Work_Base_Address,new { @class = "form-control"  })
+              @Html.ValidationMessageFor(model => model.Work_Base_Address, "", new { @class = "text-danger" })
+       
+        </div>
+        <div class='col-xs-6'>
+            <div class='form-group'>
+ 
+                 @Html.LabelFor(model => model.Managers_Name, htmlAttributes: new { @class = "" })
+            @Html.TextBoxFor(model => model.Managers_Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Managers_Name, "", new { @class = "text-danger" })
+            
+            </div>           
+      </div>
+        
+
+</div>
+
+
+<div class='row-fluid'>
+                   
+    <div class='col-xs-5 form-group'>
+      
+              @Html.LabelFor(model => model.Organisation, htmlAttributes: new { @class = "" })
+                   @Html.DropDownList("Customers", (IEnumerable<SelectListItem>)ViewData["Customers"], "Please select your Organisation", new { @class = "form-control" })
+                 @Html.ValidationMessageFor(model => model.Organisation, "", new { @class = "text-danger" })
+           </div>
+    
+        <div class='col-xs-5 form-group' >
+          
+          @Html.LabelFor(model => model.Course_Name,  htmlAttributes :new { @class = ""  })
+          @Html.DropDownList("Courses", ViewData["courses"] as List<SelectListItem>, "Please select a Course", new {  @class = "form-control" })
+           @Html.ValidationMessageFor(model => model.Course_Name)
+           </div>
+        </div>
+
+ </div>
+
+  
+      
+
+
+    <div class='row-fluid'>
+
+        <div class='col-xs-5 form-group' >
+                       @Html.LabelFor(model => model.Venue, htmlAttributes: new { @class = "" })
+               @Html.DropDownList("Venues", new SelectList(string.Empty, "Value", "Text"), "Please select a Venue", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Venue)
+        </div>
+
+         <div class='col-xs-5 form-group'>
+           
+                     @Html.LabelFor(model => model.DF, htmlAttributes: new { @class = "" })
+                  @Html.DropDownList("Dates", new SelectList(string.Empty, "Value", "Text"), "Please Select a Date:", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DF)
+           
+        </div>
+     </div>
+
+ 
+ 
+       </fieldset>
+
+
+  </div>
+
+      <div class="form-group">
+                            <div class="col-md-offset-2 col-md-8">
+                                <input  id="s" type="submit" value="Book Course" class="btn btn-primary" />
+                            </div>
+     </div>
+
+
+           
+      
+  
+      
+          
+ 
+
+                      
+           
+}
+        
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+}
+

@@ -1,0 +1,50 @@
+﻿@model Cascadingdropdownlist.Models.Course_Dates
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this coure date?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+       
+        <dt>
+            @Html.DisplayFor(model => model.Course_DatesID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Course_DatesID)
+        </dd>
+     
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Capacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Capacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DF)
+        </dd>
+
+    
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-primary" /> |
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

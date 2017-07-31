@@ -1,0 +1,13 @@
+﻿@model MVCControls.Models.CountryModel
+@{
+    ViewBag.Title = "Index";
+}
+<h4>Dropdownlist Validation</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    @Html.Label("Country")
+    @Html.DropDownListFor(c => c.SelectedCountryId,Model.Countries, "..Select..")
+    @Html.ValidationMessage("Country is required.");
+    <input type="submit" name="name" value="Submit" />
+}

@@ -1,0 +1,140 @@
+﻿
+@{
+    ViewBag.Title = "CustomerFeedback";
+}
+<h2>CustomerFeedback</h2>
+<style type="text/css">
+    .dropdown1 select {
+        border: 0px;
+        width: 150px;
+        background: none;
+    }
+
+
+    .dropdown1 {
+        border: 2px solid #7d6754;
+        border-radius: 5px;
+        padding: 3px;
+        -webkit-appearance: none;
+        background-image: url('http://maxgxl.com/max4u/images/selectArrowDown.png');
+        background-position: 225px;
+        background-repeat: no-repeat;
+        text-indent: 0.01px; /*In Firefox*/
+        text-overflow: ''; /*In Firefox*/
+        width: 150px;
+    }
+</style>
+@{
+    ViewBag.Title = "CustomerFeedback";
+}
+<h2>CustomerFeedback</h2>
+<style type="text/css">
+    .dropdown1 select
+    {
+        border: 0px;
+        width: 150px;
+        background: none;
+    }
+
+
+    .dropdown1
+    {
+        border: 2px solid #7d6754;
+        border-radius: 5px;
+        padding: 3px;
+        -webkit-appearance: none;
+        background-image: url('http://maxgxl.com/max4u/images/selectArrowDown.png');
+        background-position: 225px;
+        background-repeat: no-repeat;
+        text-indent: 0.01px; /*In Firefox*/
+        text-overflow: ''; /*In Firefox*/
+        width: 150px;
+    }
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Dropdownlist Selectedchange event
+        $("#Courses").change(function () {
+            $("#State").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetStates")', // we are calling json method
+                dataType: 'json',
+                data: { id: $("#Courses").val() },
+                success: function (states) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(states, function (i, state) {
+                        $("#State").append('<option value="' + state.Value + '">' + state.Text + '</option>');
+                    }); // here we are adding option for States
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Dropdownlist Selectedchange event
+        $("#State").change(function () {
+            $("#city").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCity")',
+                dataType: 'json',
+                data: { id: $("#State").val() },
+                success: function (citys) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+                    $.each(citys, function (i, city) {
+                        $("#city").append('<option value="'
+      + city.Value + '">'
+      + city.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    <div class="editor-label">
+        <br />
+        <div style="color: Purple;">
+            @Html.Label("Select Course")
+        </div>
+        <div class="editor-field">
+            @if (ViewData.ContainsKey("Courses"))
+            {
+                @Html.DropDownList("Courses", ViewData["courses"] as List<SelectListItem>, new { style = "width:250px", @class = "dropdown1" })
+            }
+        </div>
+        <br />
+        <div style="color: Purple;">
+            @Html.Label("Select State", new { style = "width:250px" })
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("State", new SelectList(string.Empty, "Value", "Text"), "Please select a State", new { style = "width:250px", @class = "dropdown1" })
+        </div>
+        <br />
+        <div style="color: Purple;">
+            @Html.Label("Select City", new { style = "width:250px" })
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("city", new SelectList(string.Empty, "Value", "Text"), "Please select a city", new { style = "width:250px", @class = "dropdown1" })
+        </div>
+        <br />
+        <input id="Submit1" type="submit" value="submit" />
+    </div>
+
+}
+

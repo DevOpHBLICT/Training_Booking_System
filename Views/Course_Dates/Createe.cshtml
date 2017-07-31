@@ -1,0 +1,104 @@
+﻿@model Cascadingdropdownlist.Models.Course_Dates
+
+ 
+
+
+   <!-- include your less or built css files  -->
+  <!-- 
+  bootstrap-datetimepicker-build.less will pull in "../bootstrap/variables.less" and "bootstrap-datetimepicker.less";
+  or
+  <link rel="stylesheet" href="/Content/bootstrap-datetimepicker.css" />
+  -->
+
+
+    <div class="jumbotron">
+
+ 
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+        @Html.ValidationMessage("CustomError")
+    <div class="form-horizontal">
+        <h4>Create Course Date</h4>
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CourseID, "CourseID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(x => x.CourseID, (SelectList)ViewBag.CourseID, "-- Select Item --", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CourseID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Capacity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new {@Value="8", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+  
+          <div class="form-group">
+            @Html.LabelFor(model => model.DF, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DF, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DF, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+               <div class="form-group">
+            @Html.LabelFor(model => model.FromHours, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+              @Html.DropDownListFor(model => model.FromHours, (SelectList)ViewBag.Hours,"select start hour",new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FromHours, "", new { @class = "text-danger" })
+           <div>
+            @Html.LabelFor(model => model.FromMinutes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(model => model.FromMinutes,(SelectList)ViewBag.Minutes,"select Start Minutes", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FromMinutes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+            <div class="form-group">
+            @Html.LabelFor(model => model.ToHours, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+              @Html.DropDownListFor(model => model.ToHours,(SelectList)ViewBag.Hours,"select end hour", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ToHours, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.ToMinutes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                 @Html.DropDownListFor(model => model.ToMinutes,(SelectList)ViewBag.Minutes,"select end minutes", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ToMinutes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+     <div class="form-group">
+            @Html.LabelFor(model => model.DepartmentID, "DepartmentID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(x => x.DepartmentID, (SelectList)ViewBag.Department, "-- Select Item --", htmlAttributes: new {@Id="Depart", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DepartmentID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-default" })
+</div>
+        </div>

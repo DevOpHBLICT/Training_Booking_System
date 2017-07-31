@@ -1,0 +1,136 @@
+﻿@model Cascadingdropdownlist.ViewModels.InstructorIndexData
+
+@{
+    ViewBag.Title = "Trainers";
+}
+
+<h4>Trainers (All Courses Current/Future)</h4>
+
+<p>
+    @Html.ActionLink("Create New Trainer", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Courses</th>
+        <th>Options</th>
+    </tr>
+
+    @foreach (var item in Model.Instructors)
+    {
+        string selectedRow = "";
+        if (item.ID == ViewBag.InstructorID)
+        {
+            selectedRow = "success";
+        }
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstMidName)
+            </td>
+            <td>
+                @{
+                    foreach (var course in item.Course_Dates)
+                    {
+                  
+          
+
+
+
+      @course.Course_Title @:  @course.Course_DatesID -   @course.DF.ToShortDateString()<br />
+                    }
+                }
+            </td>
+
+            <td>
+                 @Html.ActionLink("Select", "Index", new { id = item.ID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+                    }
+
+</table>
+
+@if (Model.Course_Dates != null)
+{
+    <h4>Courses Taught by Selected Instructor</h4>
+    <table class="table">
+        <tr>
+            <th>Option</th>
+            <th>Title</th>
+            <th>Start Date</th>
+            <th>Duration</th>
+            <th>Venue</th>
+        </tr>
+
+        @foreach (var item in Model.Course_Dates)
+        {
+            string selectedRow = "";
+            if (item.Course_DatesID == ViewBag.Course_DatesID)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "Index", new { course_DatesID = item.Course_DatesID })
+                </td>
+                 <td>@item.Course_Title</td>
+                <td>@item.DF.ToShortDateString()</td>
+                <td>@item.Duration</td>
+                <td>@item.Dept</td>
+            </tr>
+        }
+
+    </table>
+}
+
+
+ 
+
+
+    @if (Model.Students != null)
+    {
+        <h3>
+            Students Enrolled in Selected Course
+        </h3>
+
+
+
+
+
+
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Attended</th>
+            </tr>
+            @foreach (var item in Model.Students)
+            {
+                string selectedRow = "";
+                if (item.CourseID == ViewBag.CourseID)
+                {
+                    selectedRow = "success";
+                }
+                <tr class="@selectedRow">
+                    <td>
+                        @Html.ActionLink("Select", "Index", new { Course_DetailsID = item.CourseID })
+                    </td>
+                    <td>
+                        @item.CourseID
+                    </td>
+                    <td>
+                        @item.StudentID
+                    </td>
+                    <td>
+                        @item.FullName
+                    </td>
+                </tr>
+            }
+
+
+        </table>
+    }

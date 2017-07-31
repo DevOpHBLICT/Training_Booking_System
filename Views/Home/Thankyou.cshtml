@@ -1,0 +1,68 @@
+﻿@model Cascadingdropdownlist.Models.Student
+
+@{
+    ViewBag.Title = "Thankyou";
+}
+
+<h4>Thankyou for your booking. Your details are below</h4>
+<p> An email has been sent to  with your confirmation details. Please print a copy for your reference.</p>
+<div class="jumbotron">
+    <h4>Course Booking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+    
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Course_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email_Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email_Address)
+        </dd>
+       
+         <dt>
+            @Html.DisplayNameFor(model => model.DF)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DF)
+        </dd>
+       
+         <dt>
+            Time:
+        </dt>
+        <dd>
+           10:00 to 14:00
+        </dd>
+          
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue)
+        </dd>
+     
+
+        
+    </dl>
+</div>
+<p>
+     @Html.ActionLink("Book another course", "Create")
+</p>

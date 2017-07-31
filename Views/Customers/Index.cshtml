@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Cascadingdropdownlist.Models.Customer>
+
+     <div class="jumbotron">
+
+
+<p>
+    @Html.ActionLink("Create New Customer", "Create",null,new { @class = "btn btn-primary" })
+</p>
+   
+   
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CustomerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CustomerID })
+        </td>
+    </tr>
+}
+
+</table>
+        </div>

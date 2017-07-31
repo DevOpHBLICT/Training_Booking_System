@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Cascadingdropdownlist.ViewModels.ReportsByCustomer2>
+
+
+    @{
+        ViewBag.Title = "ReportsByCustomer";
+    }
+
+    <h4>Trained Students By Customer between yyyy/mm/dd and yyyy/mm/dd</h4>
+    <h5 style="color:red">Please enter dates in format yyyy/mm/dd and yyyy/mm/dd</h5>
+    @using (Html.BeginForm("ReportsByCustomer", "Home", FormMethod.Get))
+{
+
+    <p>
+
+               From Date: @Html.TextBox("SearchString")
+               To Date:@Html.TextBox("SearchString2")
+
+        <input type="submit" value="Search" /></p>
+}
+
+
+    <div class="jumbotron">
+
+
+        <table class="table">
+            <tr>
+                <th>
+              Course Title
+                </th>
+                <th>
+                   BCCG
+                </th>
+                <th>
+                    LCCG
+                </th>
+                
+                <th>
+                    HVCCG
+                </th>
+
+                <th>
+                    ENHCCG
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                       <td>
+                        @Html.DisplayFor(modelItem => item.Course_Title)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BCCG)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LCCG)
+                    </td>
+
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HVCCG)
+
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ENHCCG)
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>

@@ -1,0 +1,35 @@
+﻿@model Cascadingdropdownlist.Models.Student
+
+@{ 
+    Layout = "";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        #wrapper {
+            min-height: 100%;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="wrapper">
+     <div style="width:100%;margin-top:42%; z-index:15;position:absolute; text-align:center">@ViewBag.Student </div>
+        <div style="width:100%;margin-top:49%; z-index:15;position:absolute; text-align:center"><b>Who successfully completed a course in</b></div>
+
+    <div style="width:100%;text-align:center; margin-top:55%; position:absolute;z-index:16">@ViewBag.T  </div>
+<div style="left:38%; margin-top:79.5%; position:absolute;z-index:19">@ViewBag.Trainer</div>
+<div style="left:70%; margin-top:79.5%; position:absolute;z-index:20">@ViewBag.Date</div>
+        <div style="left:38%; margin-top:73%; position:absolute;z-index:19"><font face="Lucida Calligraphy,Comic Sans MS,Lucida Console" >@ViewBag.Trainer</font></div>
+
+   <image src="~/images/b.jpg"  width="1200px" margin-left="auto" margin-right="auto"/></div>
+   
+</body>
+</html>

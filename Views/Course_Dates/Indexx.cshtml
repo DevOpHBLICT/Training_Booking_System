@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Cascadingdropdownlist.Models.Course>
+
+@{
+    ViewBag.Title = "Courses";
+}
+
+<h4>Course Dates (Live only)</h4>
+
+<p>
+    @Html.ActionLink("Create New", "Create",null, new { @class = "btn btn-primary" })
+</p>
+
+@using (Html.BeginForm())
+{
+   
+}
+
+    <div class="jumbotron">
+<table id="t01">
+    <tr>
+    
+          <th>
+            @Html.DisplayNameFor(model => model.CourseID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+       <th>Options</th>
+     </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+      
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseID)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+       
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CourseID }) |
+                     @Html.ActionLink("Delete", "Delete", new { id = item.CourseID })
+                </td>
+            </tr>
+            }
+
+</table>
+        </div>

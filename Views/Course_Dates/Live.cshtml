@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Cascadingdropdownlist.Models.Course_Dates>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+    @{
+        ViewBag.Title = "Courses";
+    }
+
+    <h4>Course Dates (Live only not historical dates)</h4>
+
+
+    <p>
+        @Html.ActionLink("Create New Course Date", "Create", null, new { @class = "btn btn-primary" })
+    </p>
+
+
+
+    @using (Html.BeginForm())
+    {
+
+        <p>
+            Find by Course: @Html.TextBox("SearchString")
+            Location: @Html.TextBox("LocationString")
+
+
+
+
+
+
+            <input type="submit" value="Search" />
+        </p>
+
+
+
+
+
+    }
+
+    <table id="t01">
+        <tr>
+            <th>
+
+                @Html.ActionLink("Title", "Live", new { sortOrder = ViewBag.TitleSortParm }, new { style = "color:white" })
+
+
+
+
+            </th>
+
+     
+            <th>
+                @Html.ActionLink("Date", "Live", new { sortOrder = ViewBag.DateSortParm }, new { style = "color:white" })
+         </th>
+            <th>
+               Location
+            </th>
+
+            <th>
+               Capacity
+            </th>
+
+           
+            <th>Options</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course_Title)
+                </td>
+
+
+
+         
+                <td>
+                    @Html.DisplayFor(modelItem => item.DF)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dept)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacity)
+                </td>
+                <td>
+                     @Html.ActionLink("Delete", "Delete", new { id = item.Course_DatesID })
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Course_DatesID })
+
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+

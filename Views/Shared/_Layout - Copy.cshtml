@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - HBL Training</title>
+     @Scripts.Render("~/bundles/modernizr")
+          @Scripts.Render("~/Content/bootstrapcss")
+      @Styles.Render("~/Content/css")
+  
+
+   <script type="text/javascript">
+
+
+
+        var appInsights=window.appInsights||function(config){
+            function s(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},r=document,f=window,e="script",o=r.createElement(e),i,u;for(o.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",r.getElementsByTagName(e)[0].parentNode.appendChild(o),t.cookie=r.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace"];i.length;)s("track"+i.pop());return config.disableExceptionTracking||(i="onerror",s("_"+i),u=f[i],f[i]=function(config,r,f,e,o){var s=u&&u(config,r,f,e,o);return s!==!0&&t["_"+i](config,r,f,e,o),s}),t
+        }({
+            instrumentationKey:"615aadc5-8508-46e7-aa93-713181a155ae"
+        });
+        
+        window.appInsights=appInsights;
+        appInsights.trackPageView();
+    </script>
+
+    </head>
+    <body>
+             <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+               <a class="navbar-brand pull-left"><img height="30" src="~/images/HBLICT.png" align="left" /></a>
+
+                      @Html.ActionLink("HBL Training", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class=" navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                     <li class="dropdown"><a class="dropdown-toggle" href="#admin" >Admin<b class ="caret"></b></a>
+                        <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Reports", "About", "Home")</li>
+                    <li>@Html.ActionLink("Courses", "Index", "Course")</li>
+                     <li>@Html.ActionLink("Course Dates", "Index", "Course_Dates")</li>
+                    <li>@Html.ActionLink("Trainers", "Index", "Instructor")</li>
+                    <li>@Html.ActionLink("Locations", "Index", "Department")</li>
+                    <li>@Html.ActionLink("Student", "Index", "Student")</li>
+                    <li>@Html.ActionLink("CCGs", "Index", "CCGs")</li>
+                    <li style='color:white;'>@Html.ActionLink("ReportsByCCG", "ReportsByCCG", "Home")</li>
+                      </ul>
+                    
+                
+
+            </div>
+        
+        </div>
+  
+        <div id="body" class="container body-content">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                </div>
+            </div>
+        </footer>
+      
+        @Scripts.Render("~/bundles/jquery")
+              <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+
+  
+  <script src="~/Bootstrap/js/dropdown.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.dropdown-toggle').dropdown();
+
+        });
+
+    </script>
+           @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

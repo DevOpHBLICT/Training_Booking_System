@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Cascadingdropdownlist.Models.Course_Dates>
+
+@{
+    ViewBag.Title = "Courses";
+}
+
+<h4>Course Dates</h4>
+
+
+<p>
+    @Html.ActionLink("Create New Course Date", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+
+@using (Html.BeginForm())
+{
+
+}
+
+<table id="t01">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Course_Title)
+        </th>
+
+           <th>
+            @Html.DisplayNameFor(model => model.Course_DatesID)
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.DF)
+        </th>
+         <th>
+           @Html.DisplayNameFor(model => model.Dept)
+       </th>
+        <th>Options</th>
+        </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Course_Title)
+            </td>
+
+
+      
+            <td>
+                @Html.DisplayFor(modelItem => item.Course_DatesID)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DF)
+            </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.Dept)
+            </td>
+              <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Course_DatesID }) |
+                 @Html.ActionLink("Delete", "Delete", new { id = item.Course_DatesID })
+            </td>
+        </tr>
+    }
+
+    </table>
+       

@@ -1,0 +1,23 @@
+﻿@section HeadSection {
+	<link href="~/Content/datetimepicker4/template-datetimepicker.min.css" rel="stylesheet" />
+}
+
+@section BodyInits {
+}
+
+@section BodyScripts {
+	<script src="~/Scripts/moment-with-locales.min.js"></script>
+	<script src="~/Content/datetimepicker4/ans-datetimepicker.min.js"></script>
+}
+
+<div class="row">
+	<div class='col-sm-5'>
+		<input type="text" class="form-control control-datetime" name="Datetime" value="24.11.2016 14:17:50" />
+	</div>
+	<div class='col-sm-4'>
+		<input type="text" class="form-control control-date" name="Date" value="24.11.2016" />
+	</div>
+	<div class='col-sm-3'>
+		<input type="text" class="form-control control-time" name="Time" value="14:17" />
+	</div>
+</div>

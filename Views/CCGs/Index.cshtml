@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Cascadingdropdownlist.Models.CCG>
+
+
+
+<h4>Index</h4>
+
+<p>
+    @Html.ActionLink("Create New CCG", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CCGID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CCGID })
+        </td>
+    </tr>
+}
+
+</table>

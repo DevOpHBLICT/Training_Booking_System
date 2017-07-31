@@ -1,0 +1,134 @@
+﻿@model PagedList.IPagedList<Cascadingdropdownlist.ViewModels.EnrollmentDateGroup>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Courses Statistics";
+}
+
+<h4>Courses (Future Dates / not historical)</h4>
+<style type="text/css">a {text-decoration: none}</style>
+    <div class="jumbotron">
+
+    @{
+   List<SelectListItem> listItems= new List<SelectListItem>();
+   listItems.Add(new SelectListItem
+        {
+          Text = "Send",
+          Value = "Send"
+        });
+   listItems.Add(new SelectListItem
+        {
+            Text = "Dont Send",
+            Value = "Dont Send",
+            Selected = true
+        });
+
+ 
+
+}
+
+@using (Html.BeginForm("Live", "Home", FormMethod.Get))
+{
+
+    
+
+
+
+    <p>
+
+        
+               Find by Trainer: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+
+               Course:@Html.TextBox("Course", ViewBag.Course as string)
+
+        <input type="submit" value="Search" /></p>
+}
+
+
+
+<table style="width:100%; "> 
+    <tr >
+       <th>
+           <font color="white">
+
+          @Html.ActionLink("Trainer", "Live", new { sortOrder = ViewBag.NameSortParm, currentFilter=ViewBag.CurrentFilter },new {style="color:white"})
+               </font> 
+           </th >
+        <th>
+           Venue:
+        </th>
+        <th>
+         Course
+        </th>
+           <th  >
+               <font color="white">
+               
+                   @Html.ActionLink("Date", "Live", new { sortOrder = ViewBag.DateSortParm, currentFilter=ViewBag.CurrentFilter},new {style="color:white"})
+       
+                   
+                   
+                      </font>
+                   </th>
+        <th>Time</th>
+      
+        <th >
+            Students
+        </th>
+        <th  >
+            Capacity
+        </th>
+        <th>
+            Options
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if(item.DateFrom>DateTime.Now)
+        { 
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trainer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Venue)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Course)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateFrom)
+            </td>
+            <td>
+         @Html.DisplayFor(modelItem => item.FromHours)  
+           @Html.DisplayFor(modelItem => item.FromMinutes) : 
+                 @Html.DisplayFor(modelItem => item.ToHours) 
+          @Html.DisplayFor(modelItem => item.ToMinutes)  
+     
+            </td>
+    
+
+
+                 <td>
+                @Html.DisplayFor(modelItem => item.StudentCount)
+               
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacity)
+  </td>
+            <td>
+                           @Html.ActionLink("Book", "Create_Admin", new { id = item.Course_DatesID}) 
+                  @Html.ActionLink("Select", "Students_On_Course", new { id = item.Course_DatesID}) 
+             </td>
+        </tr>
+    }
+    }
+</table>
+        </div>
+    
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Live", 
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

@@ -1,0 +1,4 @@
+﻿Ansver.MVC.BootstrapDateTimePicker
+https://github.com/Eonasdan/bootstrap-datetimepicker
+bootstrap-datetimepicker-4.17.45/1
+2016-001-29

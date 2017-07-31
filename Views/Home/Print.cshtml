@@ -1,0 +1,73 @@
+﻿@model IEnumerable <Cascadingdropdownlist.Models.Student>
+        <!-- CSS goes in the document HEAD or added to your external stylesheet -->
+<style type="text/css">
+table.gri
+
+able {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+}
+table.gridtable th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+table.gridtable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+</style>
+
+<p>Training: @ViewBag.CourseTitle</p>
+<p>ICT Trainer:</p>
+<p>Course Date:@ViewBag.CourseDF</p>
+<p>Course Time:@ViewBag.CourseTime</p>
+<p>Venue:@ViewBag.CourseVenue</p>
+
+  
+
+
+<table  class="gridtable">
+  
+
+    <tr>
+        <th>Attended</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Office Base</th>
+        <th>Email Address</th>
+    </tr>
+    
+
+  @foreach (var item in Model)
+  {
+    <tr>
+        <td style="height: 50px">
+
+        </td>
+        <td  style="height: 50px">
+            @Html.DisplayFor(modelItem => item.FirstMidName)
+        </td>
+
+        <td style="height: 50px" >
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+    <td  style="height: 50px">
+            @Html.DisplayFor(modelItem => item.Organisation)
+        </td>
+        <td style="height: 50px"">
+            @Html.DisplayFor(modelItem => item.Email_Address)
+        </td>
+
+    </tr>
+  }
+</table>

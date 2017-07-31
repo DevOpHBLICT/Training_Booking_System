@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Cascadingdropdownlist.Models.Department>
+@{
+    ViewBag.Title = "Training Location";
+}
+<h4>Training Locations</h4>
+    <br />
+<p>
+    @Html.ActionLink("Create New Location", "Create",null, new { @class = "btn btn-primary" })
+</p>
+    <br />
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>Options</th>
+      </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.DepartmentID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.DepartmentID })
+            </td>
+        </tr>
+    }
+</table>

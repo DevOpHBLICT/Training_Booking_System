@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Cascadingdropdownlist.ViewModels.TrainingInPeriod>
+                      @{
+                          ViewBag.Title = "People List";
+                      }
+                
+                      <h2>Search People</h2>
+                      @using (Html.BeginForm("Training", "Home", FormMethod.Get))
+                      {
+                          <div>
+                              <text>Search By FirstName : </text><input type="text" name="q" />&nbsp;
+                              <input type="submit" value="Search" id="btnSubmit" />
+                          </div>
+                      }
+
+                      <div id="DivGrid">
+                          @{
+                              var grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 4, defaultSort: "Course_DateID");
+                              @grid.GetHtml(tableStyle: "PGrid", headerStyle: "Header", alternatingRowStyle: "altRow", htmlAttributes: new { id = "DataTable" }, columns: grid.Columns(
+        grid.Column("Course_DateID"),
+        grid.Column("Course_Title", "Course_Title"),
+        grid.Column("Organisation", "Organisation"),
+        grid.Column("SessionCount", "SessionCount"),
+        grid.Column("", header: "ToEdit", format: @<text>@Html.ActionLink("Edit", "Edit", "Person", new { id = 1 }, new { target = "_blank" })</text>)));
+                          }
+
+                      </div>
